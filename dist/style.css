@@ -1,0 +1,101 @@
+/* standard style reset */
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, h3, h4, h5, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small, aside {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-size: 48px;
+  font-family: 'Quattrocento', serif;
+  color: rgb(7, 28, 61);
+  text-align: left;
+  text-shadow: 0 0 10px white, 0 0 20px whitesmoke;
+  border-style: none;
+  border-width: 0px;
+  border-color: #ccc;
+  border-radius: 0%;
+  margin-top: 24px;
+}
+
+.header {
+  margin-top: 0px;
+}
+
+.intro {
+  font-style: italic;
+}
+
+nav ul {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-around;
+  align-items: right;
+  height: 2.5rem;
+  list-style-type: none;
+  font-size: 32px;
+  color: rgb(33, 120, 179);
+}
+
+
+dt a {
+  width: 80%;
+  font-size: large;
+  margin-bottom: 8px;
+}
+
+dd a {
+  margin-left: 32px;
+  display: block;
+  width: 80%;
+  font-size: medium;
+  margin-bottom: 8px;
+}
+
+dt b {
+  width: 100%;
+  font-size: large;
+  margin-bottom: 8px;
+}
+
+#content {
+  background-color:white;
+  margin: 5%;
+  width: 90%;
+  text-align: left;
+  font-size: 24px;
+  color:  black;
+  padding: 10px;
+  position: relative;
+  justify-content: space-evenly;
+  border:10px;
+  border-radius: 1%;
+}
+
+#tabs {
+  background-color:black;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  position: relative;
+  justify-content: space-evenly;
+  border:10px;
+  border-color: rgb(51, 14, 2)
+}
