@@ -51,7 +51,7 @@ nav ul {
   height: 2.5rem;
   list-style-type: none;
   font-size: 32px;
-  color: rgb(33, 120, 179);
+  color:yellow;
 }
 
 
@@ -76,7 +76,7 @@ dt b {
 }
 
 #content {
-  background-color:white;
+  background-color:rgba(231, 201, 119, 0.75);
   margin: 5%;
   width: 90%;
   text-align: left;
@@ -98,4 +98,14 @@ dt b {
   justify-content: space-evenly;
   border:10px;
   border-color: rgb(51, 14, 2)
+}
+
+button {
+  height: 30px;
+  width: 60px;
+  border-radius: 20%;
+  background-color: rgb(100, 14, 2);
+  -webkit-text-fill-color: white;
+  margin-left: 50px;
+  text-align: center;
 }
