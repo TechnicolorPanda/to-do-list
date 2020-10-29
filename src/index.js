@@ -2,6 +2,7 @@
 
 import {loadHome} from './modules/home.js';
 import {loadCreateNewItem} from './modules/createNewItem.js';
+// import {createOutput} from './modules/output.js';
 
 initiatePage();
 
@@ -34,7 +35,7 @@ function loadSectionTabs(contentSection) {
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
-        resetPage(contentSection);
+        //resetPage(contentSection);
         loadCreateNewItem(contentSection);
         }
     )
@@ -42,11 +43,11 @@ function loadSectionTabs(contentSection) {
 
 //reset page to change tabs
 
-const resetPage = function(contentSection) {
+// const resetPage = function(contentSection) {
 
-    console.log('reset');
+//     console.log('reset');
 
-    // while (contentSection.childElementCount > 0) {
-    //     contentSection.removeChild(contentSection.lastChild);
-    // }
-};
+//     // while (contentSection.childElementCount > 0) {
+//     //     contentSection.removeChild(contentSection.lastChild);
+//     // }
+// };
