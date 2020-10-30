@@ -2,7 +2,6 @@
 
 import {loadHome} from './modules/home.js';
 import {loadCreateNewItem} from './modules/createNewItem.js';
-// import {createOutput} from './modules/output.js';
 
 initiatePage();
 

@@ -5,17 +5,6 @@ const loadHome = function(contentSection) {
 	loadTitle(contentSection);
 };
 
-//load page title
-
-const loadTitle = function(contentSection) {
-	contentSection.innerHTML = `		
-	<h1 class='header'>Getting Stuff Done</h1>
-	<div id = "box">
-		<table id = "heading"></table>
-	</div>
-`	
-}
-
 //load page background image
 
 const loadBackground = function() {
@@ -30,6 +19,17 @@ const loadBackground = function() {
 		`
 		document.head.appendChild(style);
 };
+
+//load page title
+
+const loadTitle = function(contentSection) {
+	contentSection.innerHTML = `		
+		<h1 class='header'>Getting Stuff Done</h1>
+		<div id = "box">
+			<table id = "heading"></table>
+		</div>
+	`	
+}
 
 export {loadHome};
 
