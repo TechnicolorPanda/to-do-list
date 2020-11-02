@@ -1,22 +1,24 @@
+import {renderList} from './render.js';
+
 const myList = [];
 const mySavedList = [];
 
 const createOutput = function(contentSection) {
     console.log('output');
-    loadOutputBox(contentSection);
-    addListItem();
+    //loadOutputBox(contentSection);
+    createList();
 }
 
-const loadOutputBox = function(contentSection) {
+// const loadOutputBox = function(contentSection) {
 
-    console.log('output box');
+//     console.log('output box');
 
-	contentSection.innerHTML = `		
-        <div id = 'box'>
-            <table id = 'listTable'></table>
-        </div>
-    `	
-}
+// 	contentSection.innerHTML = `		
+//         <div id = 'box'>
+//             <table id = 'listTable'></table>
+//         </div>
+//     `	
+// }
 
 //create list item class
 
@@ -30,39 +32,29 @@ class listItem {
 
 //populate array with list items
 
-function addListItem() {
-    console.log ('add list items');
-
-    //add HTML for elements***
+function createList() {
 
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
     const myListItem = new listItem(item, dueDate, priority);
 
+    console.log(item, dueDate, priority);
+    console.log(myListItem);
+    console.log(myList);
+    
     myList.push(myListItem);
 
-    console.log('List array ' + myList);
-    
-    myList.forEach(element => 
-        mySavedList = element);
+    console.log(myList);
 
-    //localStorage.setItem('mySavedList', JSON.stringify(myList));
+    console.log(myList + " list item");
 
-    //clearTable();
-    myList.forEach(element => 
-        render(element.item, element.dueDate, element.priority));
+    renderList();
 }
 
-function render() {
-    console.log('render');
-    const box = document.getElementById("box");
-    const table = document.getElementById('listTable');
-    let row = table.insertRow(0);
-        for(let j = 0; j < 3; j++){ 
-            let cell = document.createElement("td");
-            cell.innerHTML = (arguments[j]);
-            row.appendChild(cell);
-        }
 
-export {createOutput};
+//     myList.forEach(element => 
+//         render(element.item, element.dueDate, element.priority));
+// }
+
+       export {createOutput};

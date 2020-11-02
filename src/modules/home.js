@@ -25,8 +25,8 @@ const loadBackground = function() {
 const loadTitle = function(contentSection) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
-		<div id = "box">
-			<table id = "heading"></table>
+		<div id = 'box'>
+			<table id = 'heading'></table>
 		</div>
 	`	
 }
