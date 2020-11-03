@@ -1,5 +1,5 @@
 
-import {createOutput} from './output.js';
+import {createList} from './home.js';
 
 const loadCreateNewItem = function(contentSection) {
 
@@ -18,12 +18,10 @@ const loadCreateNewItem = function(contentSection) {
     </div>
 `	
 
-    addListItem(createOutput);
+    addListItem(contentSection);
 };
 
 const addListItem = function(contentSection) {
-
-    console.log('button');
 
     //load submit button
 
@@ -42,7 +40,7 @@ const addListItem = function(contentSection) {
 
     submit.addEventListener('click', () => {
         //resetPage(contentSection);
-        createOutput(contentSection);
+        createList(contentSection);
         }
     )
 }

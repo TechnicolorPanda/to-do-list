@@ -109,3 +109,9 @@ button {
   margin-left: 50px;
   text-align: center;
 }
+
+td {
+  width: 290px;
+  background-color: rgba(231, 201, 119, 0.90);
+  padding: 5px;
+}
