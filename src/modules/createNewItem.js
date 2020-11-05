@@ -1,10 +1,10 @@
 
-import {createList} from './home.js';
+import {loadHome} from './home.js';
 
-const loadCreateNewItem = function(contentSection) {
+//create input fields for list items
 
-    console.log('create new item');
-    
+const loadCreateNewItem = function(contentSection, numberOfItems) {
+
     contentSection.innerHTML = `		
     <div id = 'container'>
     <div id = 'form'>
@@ -18,12 +18,12 @@ const loadCreateNewItem = function(contentSection) {
     </div>
 `	
 
-    addListItem(contentSection);
+    addListItem(contentSection, numberOfItems);
 };
 
-const addListItem = function(contentSection) {
+//create working submit button
 
-    //load submit button
+const addListItem = function(contentSection, numberOfItems) {
 
     const addSubmitButton = document.querySelector('#button');
 
@@ -36,13 +36,46 @@ const addListItem = function(contentSection) {
 
     const newTab = document.querySelector('#submit');
 
-    //add event listeners for tabs
+    //add event listeners for submit button
 
     submit.addEventListener('click', () => {
         //resetPage(contentSection);
-        createList(contentSection);
+        console.log('select submit');
+        numberOfItems++;
+        createList(contentSection, numberOfItems);
         }
     )
 }
+
+//create a class for list items
+
+class listItem {
+    constructor(item, dueDate, priority) {
+        this.item = item;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+}
+
+// push list items into an array
+
+function createList(contentSection, numberOfItems) {
+
+    const myList = [];
+	const mySavedList = [];
+
+    let item = document.getElementById('item').value;
+    let dueDate = document.getElementById('dueDate').value;
+    let priority = document.getElementById('priority').value;
+    let myListItem = new listItem(item, dueDate, priority);
+
+	myList.push(myListItem);
+	
+	// myList.forEach(element => 
+    //     mySavedList = element);
+
+    loadHome(contentSection, numberOfItems, myList);
+}
+
 
 export {loadCreateNewItem};

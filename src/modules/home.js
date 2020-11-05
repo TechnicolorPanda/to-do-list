@@ -1,8 +1,8 @@
 //load home page elements
 
-const loadHome = function(contentSection) {
+const loadHome = function(contentSection, numberOfItems, myList) {
 	loadBackground();
-	loadTitle(contentSection);
+	loadTitle(contentSection, numberOfItems, myList);
 };
 
 //load page background image
@@ -22,7 +22,7 @@ const loadBackground = function() {
 
 //load page title
 
-const loadTitle = function(contentSection) {
+const loadTitle = function(contentSection, numberOfItems, myList) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
@@ -42,55 +42,44 @@ const loadTitle = function(contentSection) {
 		box.appendChild(heading);
 		contentSection.appendChild(box);
 	}
+
+	if (numberOfItems>0) {
+		console.log(numberOfItems);
+		renderList(contentSection, myList);
+	} else {
+		console.log('no list items');
+	};
 }
 
-//create list class
+//render to do list to the page
 
-class listItem {
-    constructor(item, dueDate, priority) {
-        this.item = item;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
-}
+function renderList(contentSection, myList) {
 
-// add items to list
-
-function createList() {
-
-	const myList = [];
-	const mySavedList = [];
-
-    let item = document.getElementById('item').value;
-    let dueDate = document.getElementById('dueDate').value;
-    let priority = document.getElementById('priority').value;
-    const myListItem = new listItem(item, dueDate, priority);
-
-	myList.push(myListItem);
-	
 	myList.forEach(element => 
-		mySavedList = element);
+		render(element.item, element.dueDate, element.priority));
+
+		function render() {
+			const box = document.createElement('box');
+			const table = document.createElement('table');
+			let row = table.insertRow(0);
+				for(let j = 0; j < 3; j++){ 
+					let cell = document.createElement("td");
+					console.log(arguments[j]);
+					cell.innerHTML = (arguments[j]);
+					row.appendChild(cell);
+				}
+			contentSection.appendChild(row);
+		}
+	}
+
+// 	myList.push(myListItem);
+	
+	// myList.forEach(element => 
+	// 	mySavedList = element);
 		
-	localStorage.setItem('mySavedList', JSON.stringify(myList));
+	//localStorage.setItem('mySavedList', JSON.stringify(myList));
 
 	//clearTable();
-	myList.forEach(element => 
-		render(element.title, element.author, element.pages, element.read));
-}
-
-function render() {
-    const box = document.createElement('box');
-    console.log(box);
-    const table = document.createElement('table');
-    let row = table.insertRow(0);
-        for(let j = 0; j < 3; j++){ 
-            let cell = document.createElement("td");
-            cell.innerHTML = (arguments[j]);
-            row.appendChild(cell);
-		}
-}
 
 
 export {loadHome};
-
-
