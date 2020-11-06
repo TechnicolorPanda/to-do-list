@@ -3,7 +3,7 @@ import {loadHome} from './home.js';
 
 //create input fields for list items
 
-const loadCreateNewItem = function(contentSection, numberOfItems) {
+const loadCreateNewItem = function(contentSection, myList) {
 
     contentSection.innerHTML = `		
     <div id = 'container'>
@@ -18,12 +18,12 @@ const loadCreateNewItem = function(contentSection, numberOfItems) {
     </div>
 `	
 
-    addListItem(contentSection, numberOfItems);
+    addListItem(contentSection, myList);
 };
 
 //create working submit button
 
-const addListItem = function(contentSection, numberOfItems) {
+const addListItem = function(contentSection, myList) {
 
     const addSubmitButton = document.querySelector('#button');
 
@@ -41,8 +41,7 @@ const addListItem = function(contentSection, numberOfItems) {
     submit.addEventListener('click', () => {
         //resetPage(contentSection);
         console.log('select submit');
-        numberOfItems++;
-        createList(contentSection, numberOfItems);
+        createList(contentSection, myList);
         }
     )
 }
@@ -59,10 +58,9 @@ class listItem {
 
 // push list items into an array
 
-function createList(contentSection, numberOfItems) {
+function createList(contentSection, myList) {
 
-    const myList = [];
-	const mySavedList = [];
+    const mySavedList = [];
 
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
@@ -74,7 +72,7 @@ function createList(contentSection, numberOfItems) {
 	// myList.forEach(element => 
     //     mySavedList = element);
 
-    loadHome(contentSection, numberOfItems, myList);
+    loadHome(contentSection, myList);
 }
 
 

@@ -1,8 +1,8 @@
 //load home page elements
 
-const loadHome = function(contentSection, numberOfItems, myList) {
+const loadHome = function(contentSection, myList) {
 	loadBackground();
-	loadTitle(contentSection, numberOfItems, myList);
+	loadTitle(contentSection, myList);
 };
 
 //load page background image
@@ -22,7 +22,7 @@ const loadBackground = function() {
 
 //load page title
 
-const loadTitle = function(contentSection, numberOfItems, myList) {
+const loadTitle = function(contentSection, myList) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
@@ -34,7 +34,7 @@ const loadTitle = function(contentSection, numberOfItems, myList) {
 		const heading = document.createElement('table');
 		let row = heading.insertRow(0);
 			for(let i = 0; i < 3; i++){ 
-				let cell = document.createElement('td');
+				let cell = document.createElement('th');
 				cell.innerHTML = (arguments[i]);
 				row.appendChild(cell);
 		   }
@@ -43,8 +43,7 @@ const loadTitle = function(contentSection, numberOfItems, myList) {
 		contentSection.appendChild(box);
 	}
 
-	if (numberOfItems>0) {
-		console.log(numberOfItems);
+	if (myList.length>0) {
 		renderList(contentSection, myList);
 	} else {
 		console.log('no list items');
@@ -63,7 +62,7 @@ function renderList(contentSection, myList) {
 			const table = document.createElement('table');
 			let row = table.insertRow(0);
 				for(let j = 0; j < 3; j++){ 
-					let cell = document.createElement("td");
+					let cell = document.createElement('td');
 					console.log(arguments[j]);
 					cell.innerHTML = (arguments[j]);
 					row.appendChild(cell);

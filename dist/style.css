@@ -110,8 +110,14 @@ button {
   text-align: center;
 }
 
-td {
+th {
   width: 290px;
   background-color: rgba(231, 201, 119, 0.90);
+  padding: 5px;
+}
+
+td {
+  width: 290px;
+  background-color: rgba(231, 201, 119, 0.00);
   padding: 5px;
 }

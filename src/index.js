@@ -10,15 +10,15 @@ function initiatePage() {
     //load home page
 
     const contentSection = document.querySelector('#content');
-    let numberOfItems = 0;
-    loadHome(contentSection, numberOfItems);
-    loadSectionTabs(contentSection, numberOfItems);
+    const myList = [];
+    loadHome(contentSection, myList);
+    loadSectionTabs(contentSection, myList);
 
 }
 
 //create empty MyList array in place of numberOfItems
 
-function loadSectionTabs(contentSection, numberOfItems) {
+function loadSectionTabs(contentSection, myList) {
     
     //load tabs
 
@@ -37,7 +37,7 @@ function loadSectionTabs(contentSection, numberOfItems) {
 
     newTab.addEventListener('click', () => {
         //resetPage(contentSection);
-        loadCreateNewItem(contentSection, numberOfItems);
+        loadCreateNewItem(contentSection, myList);
         }
     )
 }
