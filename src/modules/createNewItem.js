@@ -1,9 +1,12 @@
 
 import {loadHome} from './home.js';
+import {testLocalStorage} from './localStorage.js';
 
 //create input fields for list items
 
-const loadCreateNewItem = function(contentSection, myList) {
+const loadCreateNewItem = function(contentSection, myList, mySavedList) {
+
+    console.log('load create new item');
 
     contentSection.innerHTML = `		
     <div id = 'container'>
@@ -18,12 +21,12 @@ const loadCreateNewItem = function(contentSection, myList) {
     </div>
 `	
 
-    addListItem(contentSection, myList);
+    addListItem(contentSection, myList, mySavedList);
 };
 
 //create working submit button
 
-const addListItem = function(contentSection, myList) {
+const addListItem = function(contentSection, myList, mySavedList) {
 
     const addSubmitButton = document.querySelector('#button');
 
@@ -41,7 +44,7 @@ const addListItem = function(contentSection, myList) {
     submit.addEventListener('click', () => {
         //resetPage(contentSection);
         console.log('select submit');
-        createList(contentSection, myList);
+        createList(contentSection, myList, mySavedList);
         }
     )
 }
@@ -58,9 +61,9 @@ class listItem {
 
 // push list items into an array
 
-function createList(contentSection, myList) {
+function createList(contentSection, myList, mySavedList) {
 
-    const mySavedList = [];
+    console.log('create list');
 
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
@@ -69,11 +72,24 @@ function createList(contentSection, myList) {
 
 	myList.push(myListItem);
 	
-	// myList.forEach(element => 
-    //     mySavedList = element);
+	myList.forEach(element => 
+        mySavedList = element);
+
+    localStorage.setItem('mySavedList', JSON.stringify(myList));
+
+    testLocalStorage(myList, mySavedList);
 
     loadHome(contentSection, myList);
 }
 
+
+// 	myList.push(myListItem);
+	
+	// myList.forEach(element => 
+	// 	mySavedList = element);
+		
+	//localStorage.setItem('mySavedList', JSON.stringify(myList));
+
+	//clearTable();
 
 export {loadCreateNewItem};

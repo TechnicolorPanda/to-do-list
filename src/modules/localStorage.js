@@ -1,12 +1,14 @@
-const testLocalStorage = function() {
+const testLocalStorage = function(myList, mySavedList) {
     if (storageAvailable('localStorage')) {
         if(!localStorage.getItem('mySavedList')) {
-            populateStorage();
+            console.log('populate storage');
+            populateStorage(mySavedList);
         } else {
-            retrieveStorage();
+            console.log('retrieve storage');
+            retrieveStorage(myList);
         }
     } else {
-        alert("List can not be saved to device.")
+        alert('List can not be saved to device.')
     }
 }
 
@@ -29,18 +31,14 @@ const storageAvailable = function(type) {
     }
 }
 
-const populateStorage = function() {
-    let mySavedList = [];
+const populateStorage = function(mySavedList) {
     localStorage.setItem('mySavedList', mySavedList);
 }
 
-const retrieveStorage = function() {
+const retrieveStorage = function(myList) {
     const mySavedList = JSON.parse(localStorage.getItem('mySavedList'));
     mySavedList.forEach(element => 
             myList.push(element)); 
-    clearTable();
-    mySavedList.forEach(element => 
-        render(element.item, element.dueDate, element.priority));
 }
 
 export {testLocalStorage};

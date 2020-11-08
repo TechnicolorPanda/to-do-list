@@ -71,14 +71,4 @@ function renderList(contentSection, myList) {
 		}
 	}
 
-// 	myList.push(myListItem);
-	
-	// myList.forEach(element => 
-	// 	mySavedList = element);
-		
-	//localStorage.setItem('mySavedList', JSON.stringify(myList));
-
-	//clearTable();
-
-
 export {loadHome};
