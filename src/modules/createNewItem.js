@@ -1,12 +1,9 @@
 
 import {loadHome} from './home.js';
-import {testLocalStorage} from './localStorage.js';
 
 //create input fields for list items
 
 const loadCreateNewItem = function(contentSection, myList, mySavedList) {
-
-    console.log('load create new item');
 
     contentSection.innerHTML = `		
     <div id = 'container'>
@@ -28,6 +25,8 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList) {
 
 const addListItem = function(contentSection, myList, mySavedList) {
 
+    //create submit button
+
     const addSubmitButton = document.querySelector('#button');
 
     addSubmitButton.innerHTML =
@@ -42,11 +41,8 @@ const addListItem = function(contentSection, myList, mySavedList) {
     //add event listeners for submit button
 
     submit.addEventListener('click', () => {
-        //resetPage(contentSection);
-        console.log('select submit');
         createList(contentSection, myList, mySavedList);
-        }
-    )
+    })
 }
 
 //create a class for list items
@@ -59,37 +55,28 @@ class listItem {
     }
 }
 
-// push list items into an array
+// push list items into a saved array
 
 function createList(contentSection, myList, mySavedList) {
-
-    console.log('create list');
 
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
     let myListItem = new listItem(item, dueDate, priority);
 
-	myList.push(myListItem);
+    myList.push(myListItem);
 	
 	myList.forEach(element => 
         mySavedList = element);
 
-    localStorage.setItem('mySavedList', JSON.stringify(myList));
-
-    testLocalStorage(myList, mySavedList);
-
+    placeInStorage(myList);
     loadHome(contentSection, myList);
 }
 
+//add to do list to local storage
 
-// 	myList.push(myListItem);
-	
-	// myList.forEach(element => 
-	// 	mySavedList = element);
-		
-	//localStorage.setItem('mySavedList', JSON.stringify(myList));
-
-	//clearTable();
+function placeInStorage(myList) {
+    localStorage.setItem('mySavedList', JSON.stringify(myList));
+}
 
 export {loadCreateNewItem};

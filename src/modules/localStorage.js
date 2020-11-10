@@ -2,15 +2,19 @@ const testLocalStorage = function(myList, mySavedList) {
     if (storageAvailable('localStorage')) {
         if(!localStorage.getItem('mySavedList')) {
             console.log('populate storage');
+            console.log(mySavedList);
             populateStorage(mySavedList);
         } else {
             console.log('retrieve storage');
+            console.log(myList);
             retrieveStorage(myList);
         }
     } else {
         alert('List can not be saved to device.')
     }
 }
+
+//determine if local storage is available on this device
 
 const storageAvailable = function(type) {
     let storage;
@@ -31,9 +35,13 @@ const storageAvailable = function(type) {
     }
 }
 
+//if user is new on this device, create local storage on this device
+
 const populateStorage = function(mySavedList) {
     localStorage.setItem('mySavedList', mySavedList);
 }
+
+//retrieve local storage stored on device
 
 const retrieveStorage = function(myList) {
     const mySavedList = JSON.parse(localStorage.getItem('mySavedList'));
