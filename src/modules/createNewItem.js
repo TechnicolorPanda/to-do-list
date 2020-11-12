@@ -77,6 +77,23 @@ function createList(contentSection, myList, mySavedList) {
 
 function placeInStorage(myList) {
     localStorage.setItem('mySavedList', JSON.stringify(myList));
+
+}
+
+//remove item from array when button selected
+
+function removeItem(button, myList, mySavedList, contentSection) {
+        for (let i = myList.length-1; i>=0; i--) {
+            if (myList[i].item === button.value)
+                myList.splice(i,1);
+        }
+
+        myList.forEach(element => 
+            mySavedList = element);
+    
+        placeInStorage(myList);
+        loadHome(contentSection, myList);
 }
 
 export {loadCreateNewItem};
+export {removeItem};

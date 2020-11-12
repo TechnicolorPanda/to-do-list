@@ -1,8 +1,11 @@
+import {removeItem} from './createNewItem.js';
+
 //load home page elements
 
-const loadHome = function(contentSection, myList) {
+const loadHome = function(contentSection, myList, mySavedList) {
+	console.log('load home');
 	loadBackground();
-	loadTitle(contentSection, myList);
+	loadTitle(contentSection, myList, mySavedList);
 };
 
 //load page background image
@@ -22,7 +25,7 @@ const loadBackground = function() {
 
 //load page title
 
-const loadTitle = function(contentSection, myList) {
+const loadTitle = function(contentSection, myList, mySavedList) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
@@ -44,7 +47,7 @@ const loadTitle = function(contentSection, myList) {
 	}
 
 	if (myList.length>0) {
-		renderList(contentSection, myList);
+		renderList(contentSection, myList, mySavedList);
 	} else {
 		console.log('no list items');
 	};
@@ -52,7 +55,7 @@ const loadTitle = function(contentSection, myList) {
 
 //render to do list to the page
 
-function renderList(contentSection, myList) {
+function renderList(contentSection, myList, mySavedList) {
 
 	myList.forEach(element => 
 		render(element.item, element.dueDate, element.priority));
@@ -66,9 +69,23 @@ function renderList(contentSection, myList) {
 					console.log(arguments[j]);
 					cell.innerHTML = (arguments[j]);
 					row.appendChild(cell);
-				}
+			}
+			console.log("render complete");
+			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
 			contentSection.appendChild(row);
 		}
+	}
+
+	//add ability to delete items
+
+	function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
+		const button = document.createElement('button');
+		button.innerHTML = 'remove';
+		button.value =  itemValue;
+		row.appendChild(button);
+		button.addEventListener('click', () => {
+			removeItem(button, myList, mySavedList, contentSection);
+		})
 	}
 
 export {loadHome};

@@ -14,7 +14,7 @@ function initiatePage() {
     const myList = [];
     const mySavedList = [];
     testLocalStorage(myList, mySavedList);
-    loadHome(contentSection, myList);
+    loadHome(contentSection, myList, mySavedList);
     loadSectionTabs(contentSection, myList, mySavedList);
     
 }
@@ -39,19 +39,7 @@ function loadSectionTabs(contentSection, myList, mySavedList) {
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
-        //resetPage(contentSection);
         loadCreateNewItem(contentSection, myList, mySavedList);
-        }
-    )
+    })
 }
 
-//reset page to change tabs
-
-// const resetPage = function(contentSection) {
-
-//     console.log('reset');
-
-//     // while (contentSection.childElementCount > 0) {
-//     //     contentSection.removeChild(contentSection.lastChild);
-//     // }
-// };
