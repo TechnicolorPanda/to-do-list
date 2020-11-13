@@ -6,18 +6,23 @@ import {loadHome} from './home.js';
 const loadCreateNewItem = function(contentSection, myList, mySavedList) {
 
     contentSection.innerHTML = `		
-    <div id = 'container'>
+    <div id = 'content'>
     <div id = 'form'>
         <label for='item'>Item</label>
-        <input type='text' id='item' class='text-input' name='item' maxlength='100' onfocus='this.value=" "'><br>
+        <input type='text' id='item' class='text-input' name='item' maxlength='200' onfocus='this.value=" "'><br>
         <label for='dueDate'>Due Date</label>
         <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' onfocus='this.value=" "'><br>
         <label for='priority'>Priority</label>
-        <input type='number' id='priority' value = '0' name='priority' min='0' max='9999' onfocus='this.value=""'><br>
+        <select id = 'priority' name='priority'>
+            <option value = 'high'>high</option>
+            <option value = 'medium'>medium</option>
+            <option value = 'low'>low</option>
+        </select><br>
+        <label for='notes'>Notes</label><br>
+        <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' onfocus='this.value=" "'></textarea><br>
         <div id='button'></div>
     </div>
 `	
-
     addListItem(contentSection, myList, mySavedList);
 };
 
@@ -48,10 +53,11 @@ const addListItem = function(contentSection, myList, mySavedList) {
 //create a class for list items
 
 class listItem {
-    constructor(item, dueDate, priority) {
+    constructor(item, dueDate, priority, notes) {
         this.item = item;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.notes = notes;
     }
 }
 
@@ -62,7 +68,8 @@ function createList(contentSection, myList, mySavedList) {
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
-    let myListItem = new listItem(item, dueDate, priority);
+    let notes = document.getElementById('notes').value;
+    let myListItem = new listItem(item, dueDate, priority, notes);
 
     myList.push(myListItem);
 	

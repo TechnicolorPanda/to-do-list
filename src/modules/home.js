@@ -70,7 +70,6 @@ function renderList(contentSection, myList, mySavedList) {
 					cell.innerHTML = (arguments[j]);
 					row.appendChild(cell);
 			}
-			console.log("render complete");
 			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
 			contentSection.appendChild(row);
 		}
