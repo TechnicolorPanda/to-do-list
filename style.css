@@ -121,3 +121,23 @@ td {
   background-color: rgba(231, 201, 119, 0.00);
   padding: 5px;
 }
+
+#notes {
+  width: 80%;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+#priority {
+  margin-top: 1rem;
+}
+
+input {
+  margin-top: 1rem;
+}
+
+label {
+  margin-top: 1rem;
+}
+
+
