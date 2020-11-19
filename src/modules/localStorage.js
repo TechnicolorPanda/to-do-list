@@ -1,12 +1,8 @@
 const testLocalStorage = function(myList, mySavedList) {
     if (storageAvailable('localStorage')) {
         if(!localStorage.getItem('mySavedList')) {
-            console.log('populate storage');
-            console.log(mySavedList);
             populateStorage(mySavedList);
         } else {
-            console.log('retrieve storage');
-            console.log(myList);
             retrieveStorage(myList);
         }
     } else {

@@ -31,6 +31,8 @@ function loadSectionTabs(contentSection, myList, mySavedList) {
         `<nav class = 'header'>
             <ul>
                 <li id = 'new'>Create new item</a></li>
+                <li id = 'project'>Add New Project</a></li>
+                <li id = 'view'>View List</a></li>
             </ul>
         </nav>`
 

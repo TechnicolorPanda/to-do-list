@@ -1,9 +1,9 @@
 import {removeItem} from './createNewItem.js';
+import {crossOffItem} from './createNewItem.js';
 
 //load home page elements
 
 const loadHome = function(contentSection, myList, mySavedList) {
-	console.log('load home');
 	loadBackground();
 	loadTitle(contentSection, myList, mySavedList);
 };
@@ -58,33 +58,62 @@ const loadTitle = function(contentSection, myList, mySavedList) {
 function renderList(contentSection, myList, mySavedList) {
 
 	myList.forEach(element => 
-		render(element.item, element.dueDate, element.priority));
+		render(element.item, element.dueDate, element.priority, element.completed, element.notes));
 
-		function render() {
-			const box = document.createElement('box');
-			const table = document.createElement('table');
-			let row = table.insertRow(0);
-				for(let j = 0; j < 3; j++){ 
-					let cell = document.createElement('td');
-					console.log(arguments[j]);
-					cell.innerHTML = (arguments[j]);
-					row.appendChild(cell);
-			}
-			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
-			contentSection.appendChild(row);
+	function render() {
+		const box = document.createElement('box');
+		const table = document.createElement('table');
+		let row = table.insertRow(0);
+		createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
+		for(let j = 0; j < 4; j++){ 
+			let cell = document.createElement('td');
+			console.log(arguments[j]);
+			cell.innerHTML = (arguments[j]);
+			row.appendChild(cell);
 		}
+	addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
+	contentSection.appendChild(row);
+	}
+}
+
+//create task completed checkbox on table
+
+function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, checkboxID) {
+
+	console.log("createCheckbox");
+
+	const checkbox = document.createElement('input');
+	checkbox.setAttribute('id','completed');
+	checkbox.setAttribute('type','checkbox');
+	checkbox.setAttribute('style', 'height: 20px; width: 20px; margin-top: 25px;');
+
+	if (isCompleted === 'yes') {
+		checkbox.checked = true;
+		checkbox.value = checkboxID;
+		row.appendChild(checkbox);
+	} else {
+		checkbox.checked = false;
+		checkbox.value = checkboxID;
+		row.appendChild(checkbox);
 	}
 
-	//add ability to delete items
+	checkbox.addEventListener('click', function() {
+		console.log('event selected');
+		crossOffItem(row, myList, checkbox, mySavedList);
+	}, false);
 
-	function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
-		const button = document.createElement('button');
-		button.innerHTML = 'remove';
-		button.value =  itemValue;
-		row.appendChild(button);
-		button.addEventListener('click', () => {
-			removeItem(button, myList, mySavedList, contentSection);
-		})
-	}
+}
+
+//add ability to delete items
+
+function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
+	const button = document.createElement('button');
+	button.innerHTML = 'remove';
+	button.value =  itemValue;
+	row.appendChild(button);
+	button.addEventListener('click', () => {
+		removeItem(button, myList, mySavedList, contentSection);
+	})
+}
 
 export {loadHome};

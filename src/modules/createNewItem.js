@@ -53,10 +53,11 @@ const addListItem = function(contentSection, myList, mySavedList) {
 //create a class for list items
 
 class listItem {
-    constructor(item, dueDate, priority, notes) {
+    constructor(item, dueDate, priority, notes, completed) {
         this.item = item;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.completed = completed;
         this.notes = notes;
     }
 }
@@ -65,16 +66,21 @@ class listItem {
 
 function createList(contentSection, myList, mySavedList) {
 
+    console.log("create list");
+
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
+    let completed = 'yes';
     let notes = document.getElementById('notes').value;
-    let myListItem = new listItem(item, dueDate, priority, notes);
+    let myListItem = new listItem(item, dueDate, priority, notes, completed);
 
     myList.push(myListItem);
 	
 	myList.forEach(element => 
         mySavedList = element);
+
+    console.log(myList);
 
     placeInStorage(myList);
     loadHome(contentSection, myList);
@@ -84,7 +90,28 @@ function createList(contentSection, myList, mySavedList) {
 
 function placeInStorage(myList) {
     localStorage.setItem('mySavedList', JSON.stringify(myList));
+}
 
+//remove checked off item from array
+
+function crossOffItem(row, myList, checkbox, mySavedList){
+		console.log('event selected');
+		for (let i = myList.length-1; i>=0; i--) {
+			if (myList[i].item === checkbox.value) {
+				if (checkbox.checked === false) {
+					console.log(checkbox.checked);
+					myList[i].completed = 'no';
+				} else {
+					myList[i].completed = 'yes';
+					console.log(checkbox.checked);
+					row.setAttribute('text-decoration','line-through');
+				};
+            }
+        myList.forEach(element => 
+            mySavedList = element);
+    
+        placeInStorage(myList);
+		}
 }
 
 //remove item from array when button selected
@@ -104,3 +131,4 @@ function removeItem(button, myList, mySavedList, contentSection) {
 
 export {loadCreateNewItem};
 export {removeItem};
+export {crossOffItem};
