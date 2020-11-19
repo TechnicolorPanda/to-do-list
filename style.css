@@ -50,7 +50,7 @@ nav ul {
   align-items: right;
   height: 2.5rem;
   list-style-type: none;
-  font-size: 32px;
+  font-size: 24px;
   color:yellow;
 }
 
@@ -80,7 +80,7 @@ dt b {
   margin: 5%;
   width: 90%;
   text-align: left;
-  font-size: 24px;
+  font-size: 16px;
   color:  black;
   padding: 10px;
   position: relative;
