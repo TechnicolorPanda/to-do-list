@@ -71,7 +71,7 @@ function createList(contentSection, myList, mySavedList) {
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
-    let completed = 'yes';
+    let completed = 'no';
     let notes = document.getElementById('notes').value;
     let myListItem = new listItem(item, dueDate, priority, notes, completed);
 
@@ -95,22 +95,18 @@ function placeInStorage(myList) {
 //remove checked off item from array
 
 function crossOffItem(row, myList, checkbox, mySavedList){
-		console.log('event selected');
 		for (let i = myList.length-1; i>=0; i--) {
 			if (myList[i].item === checkbox.value) {
 				if (checkbox.checked === false) {
-					console.log(checkbox.checked);
 					myList[i].completed = 'no';
 				} else {
 					myList[i].completed = 'yes';
-					console.log(checkbox.checked);
-					row.setAttribute('text-decoration','line-through');
 				};
             }
-        myList.forEach(element => 
-            mySavedList = element);
-    
-        placeInStorage(myList);
+            myList.forEach(element => 
+                mySavedList = element);
+
+            placeInStorage(myList);
 		}
 }
 

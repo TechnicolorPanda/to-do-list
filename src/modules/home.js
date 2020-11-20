@@ -70,7 +70,12 @@ function renderList(contentSection, myList, mySavedList) {
 			console.log(arguments[j]);
 			cell.innerHTML = (arguments[j]);
 			row.appendChild(cell);
+
+			row.addEventListener('dblclick', () => {
+				selectItem(row, myList, mySavedList, contentSection, arguments[0]);
+			});
 		}
+
 	addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
 	contentSection.appendChild(row);
 	}
@@ -108,12 +113,16 @@ function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, c
 
 function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
 	const button = document.createElement('button');
-	button.innerHTML = 'remove';
 	button.value =  itemValue;
 	row.appendChild(button);
 	button.addEventListener('click', () => {
 		removeItem(button, myList, mySavedList, contentSection);
 	})
+}
+
+function selectItem(row, myList, mySavedList, contentSection, itemValue) {
+	console.log('item selected');
+	console.log(itemValue);
 }
 
 export {loadHome};
