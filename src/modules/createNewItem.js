@@ -9,17 +9,17 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList) {
     <div id = 'content'>
     <div id = 'form'>
         <label for='item'>Item</label>
-        <input type='text' id='item' class='text-input' name='item' maxlength='200' onfocus='this.value=" "'><br>
+        <input type='text' id='item' class='text-input' name='item' maxlength='200' value=' ' onfocus='this.value=" "'><br>
         <label for='dueDate'>Due Date</label>
-        <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' onfocus='this.value=" "'><br>
+        <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' ' onfocus='this.value=" "'><br>
         <label for='priority'>Priority</label>
-        <select id = 'priority' name='priority'>
+        <select id = 'priority' name='priority' value = ' '>
             <option value = 'high'>high</option>
             <option value = 'medium'>medium</option>
             <option value = 'low'>low</option>
         </select><br>
         <label for='notes'>Notes</label><br>
-        <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' onfocus='this.value=" "'></textarea><br>
+        <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' ' onfocus='this.value=" "'></textarea><br>
         <div id='button'></div>
     </div>
 `	
@@ -40,8 +40,6 @@ const addListItem = function(contentSection, myList, mySavedList) {
                 <button id = 'submit'>Submit</a></li>
             </ul>
         </nav>`
-
-    const newTab = document.querySelector('#submit');
 
     //add event listeners for submit button
 

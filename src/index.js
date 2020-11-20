@@ -3,6 +3,7 @@
 import {loadHome} from './modules/home.js';
 import {loadCreateNewItem} from './modules/createNewItem.js';
 import {testLocalStorage} from './modules/localStorage.js';
+import {loadCreateNewProject} from './modules/createNewProject.js';
 
 initiatePage();
 
@@ -37,11 +38,21 @@ function loadSectionTabs(contentSection, myList, mySavedList) {
         </nav>`
 
     const newTab = document.querySelector('#new');
+    const newProject = document.querySelector('#project');
+    const viewList = document.querySelector('#view');
 
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
         loadCreateNewItem(contentSection, myList, mySavedList);
+    })
+
+    newProject.addEventListener('click', () => {
+        loadCreateNewProject(contentSection, myList, mySavedList);
+    })
+
+    viewList.addEventListener('click', () => {
+        loadHome(contentSection, myList, mySavedList);
     })
 }
 

@@ -114,6 +114,7 @@ function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, c
 function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
 	const button = document.createElement('button');
 	button.value =  itemValue;
+	button.id = 'trashButton';
 	row.appendChild(button);
 	button.addEventListener('click', () => {
 		removeItem(button, myList, mySavedList, contentSection);
@@ -123,6 +124,8 @@ function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
 function selectItem(row, myList, mySavedList, contentSection, itemValue) {
 	console.log('item selected');
 	console.log(itemValue);
+	document.getElementById('item').value = itemValue;
+	loadCreateNewItem(contentSection, myList, mySavedList);
 }
 
 export {loadHome};

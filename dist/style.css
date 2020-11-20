@@ -100,13 +100,23 @@ dt b {
   border-color: rgb(51, 14, 2)
 }
 
-button {
+#trashButton {
   background-image: url('images/trash.png');
   background-size: cover;
   height: 30px;
   width: 30px;
   border-radius: 20%;
   background-color: rgba(100, 14, 2, 0);
+  -webkit-text-fill-color: white;
+  margin-right: 50px;
+  text-align: center;
+}
+
+button {
+  height: 30px;
+  width: 60px;
+  border-radius: 20%;
+  background-color: red;
   -webkit-text-fill-color: white;
   margin-right: 50px;
   text-align: center;
