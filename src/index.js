@@ -14,15 +14,16 @@ function initiatePage() {
     const contentSection = document.querySelector('#content');
     const myList = [];
     const mySavedList = [];
+    const myProject = ['Miscellaneous'];
     testLocalStorage(myList, mySavedList);
     loadHome(contentSection, myList, mySavedList);
-    loadSectionTabs(contentSection, myList, mySavedList);
+    loadSectionTabs(contentSection, myList, mySavedList, myProject);
     
 }
 
 //create empty MyList array in place of numberOfItems
 
-function loadSectionTabs(contentSection, myList, mySavedList) {
+function loadSectionTabs(contentSection, myList, mySavedList, myProject) {
     
     //load tabs
 
@@ -32,27 +33,27 @@ function loadSectionTabs(contentSection, myList, mySavedList) {
         `<nav class = 'header'>
             <ul>
                 <li id = 'new'>Create new item</a></li>
-                <li id = 'project'>Add New Project</a></li>
+                <li id = 'addProject'>Add New Project</a></li>
                 <li id = 'view'>View List</a></li>
             </ul>
         </nav>`
 
     const newTab = document.querySelector('#new');
-    const newProject = document.querySelector('#project');
+    const newProject = document.querySelector('#addProject');
     const viewList = document.querySelector('#view');
 
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
-        loadCreateNewItem(contentSection, myList, mySavedList);
+        loadCreateNewItem(contentSection, myList, mySavedList, myProject);
     })
 
     newProject.addEventListener('click', () => {
-        loadCreateNewProject(contentSection, myList, mySavedList);
+        loadCreateNewProject(contentSection, myList, mySavedList, myProject);
     })
 
     viewList.addEventListener('click', () => {
-        loadHome(contentSection, myList, mySavedList);
+        loadHome(contentSection, myList, mySavedList, myProject);
     })
 }
 

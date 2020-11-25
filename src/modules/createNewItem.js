@@ -3,27 +3,45 @@ import {loadHome} from './home.js';
 
 //create input fields for list items
 
-const loadCreateNewItem = function(contentSection, myList, mySavedList) {
+const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject) {
 
     contentSection.innerHTML = `		
     <div id = 'content'>
-    <div id = 'form'>
-        <label for='item'>Item</label>
-        <input type='text' id='item' class='text-input' name='item' maxlength='200' value=' ' onfocus='this.value=" "'><br>
-        <label for='dueDate'>Due Date</label>
-        <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' ' onfocus='this.value=" "'><br>
-        <label for='priority'>Priority</label>
-        <select id = 'priority' name='priority' value = ' '>
-            <option value = 'high'>high</option>
-            <option value = 'medium'>medium</option>
-            <option value = 'low'>low</option>
-        </select><br>
-        <label for='notes'>Notes</label><br>
-        <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' ' onfocus='this.value=" "'></textarea><br>
-        <div id='button'></div>
+        <div id = 'form'>
+            <label for='project'>Project</label>
+            <select id = 'project' name='project'>
+            </select><br> 
+            <label for='item'>Item</label>
+            <input type='text' id='item' class='text-input' name='item' maxlength='200' value=' ' onfocus='this.value=" "'><br>
+            <label for='dueDate'>Due Date</label>
+            <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' ' onfocus='this.value=" "'><br>
+            <label for='priority'>Priority</label>
+            <select id = 'priority' name='priority' value = ' '>
+                <option value = 'high'>high</option>
+                <option value = 'medium'>medium</option>
+                <option value = 'low'>low</option>
+            </select><br>
+            <label for='notes'>Notes</label><br>
+            <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' ' onfocus='this.value=" "'></textarea><br>
+            <div id='button'></div>
+        </div>
     </div>
 `	
+    getProject(contentSection, myProject);
     addListItem(contentSection, myList, mySavedList);
+};
+
+const getProject = function(contentSection, myProject) {
+    console.log("create dropdown menu");
+    const addDropdownMenu = document.getElementById('project');
+
+    for(let i = 0; i < myProject.length; i++){
+        let projectOption = myProject[i];
+        let projectName = document.createElement('option');
+        projectName.textContent = projectOption;
+        projectName.value = projectOption;
+        addDropdownMenu.appendChild(projectName);
+    }
 };
 
 //create working submit button
@@ -39,7 +57,8 @@ const addListItem = function(contentSection, myList, mySavedList) {
             <ul>
                 <button id = 'submit'>Submit</a></li>
             </ul>
-        </nav>`
+        </nav>
+        `
 
     //add event listeners for submit button
 
@@ -51,12 +70,13 @@ const addListItem = function(contentSection, myList, mySavedList) {
 //create a class for list items
 
 class listItem {
-    constructor(item, dueDate, priority, notes, completed) {
+    constructor(item, dueDate, priority, notes, completed, project) {
         this.item = item;
         this.dueDate = dueDate;
         this.priority = priority;
         this.completed = completed;
         this.notes = notes;
+        this.project = project;
     }
 }
 
@@ -65,13 +85,14 @@ class listItem {
 function createList(contentSection, myList, mySavedList) {
 
     console.log("create list");
-
+    
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
     let completed = 'no';
     let notes = document.getElementById('notes').value;
-    let myListItem = new listItem(item, dueDate, priority, notes, completed);
+    let project = document.getElementById('project').value;
+    let myListItem = new listItem(item, dueDate, priority, notes, completed, project);
 
     myList.push(myListItem);
 	

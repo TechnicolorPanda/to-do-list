@@ -1,21 +1,26 @@
+import {loadHome} from './home.js';
 
+//create form to add new project option
 
-const loadCreateNewProject = function(contentSection, myList, mySavedList) {
+const loadCreateNewProject = function(contentSection, myList, mySavedList, myProject) {
 
     contentSection.innerHTML = `		
     <div id = 'content'>
-    <div id = 'form'>
-        <label for='project'>Project</label>
-        <input type='text' id='project' class='text-input' name='project' maxlength='200' value=' ' onfocus='this.value=" "'><br>
-        <div id = 'button'></div>
+        <div id = 'form'>
+            <label for='newProject'>Project</label>
+            <input type='text' id='newProject' class='text-input' name='newProject' maxlength='200' onfocus='this.value=" "'><br>
+            <div id = 'button'></div>
+        </div>
     </div>
 `	
-    console.log('add project');
-
-    addProject(contentSection, myList, mySavedList);
+    addProject(contentSection, myList, mySavedList, myProject);
 };
 
-function addProject(contentSection, myList, mySavedList){
+//add working button to create a new project
+
+function addProject(contentSection, myList, mySavedList, myProject){
+
+    console.log('add project');
     
     const addCreateButton = document.querySelector('#button');
 
@@ -24,17 +29,20 @@ function addProject(contentSection, myList, mySavedList){
             <ul>
                 <button id = 'create'>Create</a></li>
             </ul>
-        </nav>`
-
-    //add event listeners for create button
+        </nav>
+        `
 
     create.addEventListener('click', () => {
-        createProject(contentSection, myList, mySavedList);
+        createProject(contentSection, myList, mySavedList, myProject);
     });
 }
 
-function createProject(contentSection, myList, mySavedList) {
-    console.log('created new project');
+//push new project to list of project options
+
+function createProject(contentSection, myList, mySavedList, myProject) {
+    let projectItem = document.getElementById('newProject').value;
+    myProject.push(projectItem);	
+    loadHome(contentSection, myList, mySavedList);
 }
 
 export {loadCreateNewProject};

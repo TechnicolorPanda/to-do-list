@@ -14,7 +14,7 @@ const loadBackground = function() {
 	let style = document.createElement('style');
 	style.innerHTML = `
 		body{
-			background-image: url("images/november.jpg");
+			background-color: white;
 			background-repeat: no-repeat;
 			background-attachment: fixed;
 			background-size: cover;
@@ -65,7 +65,7 @@ function renderList(contentSection, myList, mySavedList) {
 		const table = document.createElement('table');
 		let row = table.insertRow(0);
 		createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
-		for(let j = 0; j < 4; j++){ 
+		for(let j = 0; j < 3; j++){ 
 			let cell = document.createElement('td');
 			console.log(arguments[j]);
 			cell.innerHTML = (arguments[j]);
