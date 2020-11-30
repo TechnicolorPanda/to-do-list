@@ -42,7 +42,12 @@ function addProject(contentSection, myList, mySavedList, myProject){
 function createProject(contentSection, myList, mySavedList, myProject) {
     let projectItem = document.getElementById('newProject').value;
     myProject.push(projectItem);	
+    placeInStorage(myProject);
     loadHome(contentSection, myList, mySavedList);
+}
+
+function placeInStorage(myProject) {
+    localStorage.setItem('mySavedProject', JSON.stringify(myProject));
 }
 
 export {loadCreateNewProject};

@@ -1,9 +1,9 @@
-const testLocalStorage = function(myList, mySavedList) {
+const testLocalStorage = function(myList, mySavedList, myProject, mySavedProject) {
     if (storageAvailable('localStorage')) {
         if(!localStorage.getItem('mySavedList')) {
-            populateStorage(mySavedList);
+            populateStorage(mySavedList, mySavedProject);
         } else {
-            retrieveStorage(myList);
+            retrieveStorage(myList, myProject);
         }
     } else {
         alert('List can not be saved to device.')
@@ -33,16 +33,20 @@ const storageAvailable = function(type) {
 
 //if user is new on this device, create local storage on this device
 
-const populateStorage = function(mySavedList) {
+const populateStorage = function(mySavedList, mySavedProject) {
     localStorage.setItem('mySavedList', mySavedList);
+    localStorage.setItem('mySavedProject', mySavedProject);
 }
 
 //retrieve local storage stored on device
 
-const retrieveStorage = function(myList) {
+const retrieveStorage = function(myList, myProject) {
     const mySavedList = JSON.parse(localStorage.getItem('mySavedList'));
+    const mySavedProject = JSON.parse(localStorage.getItem('mySavedProject'));
     mySavedList.forEach(element => 
-            myList.push(element)); 
+            myList.push(element));
+    mySavedProject.forEach(element =>
+            myProject.push(element));
 }
 
 export {testLocalStorage};

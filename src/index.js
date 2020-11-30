@@ -15,7 +15,8 @@ function initiatePage() {
     const myList = [];
     const mySavedList = [];
     const myProject = ['Miscellaneous'];
-    testLocalStorage(myList, mySavedList);
+    const mySavedProject = [];
+    testLocalStorage(myList, mySavedList, myProject, mySavedProject);
     loadHome(contentSection, myList, mySavedList);
     loadSectionTabs(contentSection, myList, mySavedList, myProject);
     
