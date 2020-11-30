@@ -14,17 +14,17 @@ function initiatePage() {
     const contentSection = document.querySelector('#content');
     const myList = [];
     const mySavedList = [];
-    const myProject = ['Miscellaneous'];
+    const myProject = [];
     const mySavedProject = [];
     testLocalStorage(myList, mySavedList, myProject, mySavedProject);
     loadHome(contentSection, myList, mySavedList);
-    loadSectionTabs(contentSection, myList, mySavedList, myProject);
+    loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject);
     
 }
 
 //create empty MyList array in place of numberOfItems
 
-function loadSectionTabs(contentSection, myList, mySavedList, myProject) {
+function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject) {
     
     //load tabs
 
@@ -50,7 +50,7 @@ function loadSectionTabs(contentSection, myList, mySavedList, myProject) {
     })
 
     newProject.addEventListener('click', () => {
-        loadCreateNewProject(contentSection, myList, mySavedList, myProject);
+        loadCreateNewProject(contentSection, myProject, mySavedProject);
     })
 
     viewList.addEventListener('click', () => {

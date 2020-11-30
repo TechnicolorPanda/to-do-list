@@ -1,7 +1,7 @@
 const testLocalStorage = function(myList, mySavedList, myProject, mySavedProject) {
     if (storageAvailable('localStorage')) {
         if(!localStorage.getItem('mySavedList')) {
-            populateStorage(mySavedList, mySavedProject);
+            populateStorage(mySavedList, mySavedProject, myProject);
         } else {
             retrieveStorage(myList, myProject);
         }
@@ -33,7 +33,8 @@ const storageAvailable = function(type) {
 
 //if user is new on this device, create local storage on this device
 
-const populateStorage = function(mySavedList, mySavedProject) {
+const populateStorage = function(mySavedList, mySavedProject, myProject) {
+    myProject.push('Miscellaneous');
     localStorage.setItem('mySavedList', mySavedList);
     localStorage.setItem('mySavedProject', mySavedProject);
 }
