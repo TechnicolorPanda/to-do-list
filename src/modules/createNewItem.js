@@ -3,8 +3,10 @@ import {loadHome} from './home.js';
 
 //create input fields for list items
 
-const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject) {
+const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject, itemValue) {
 
+    console.log('load create new item');
+    
     contentSection.innerHTML = `		
     <div id = 'content'>
         <div id = 'form'>
@@ -27,9 +29,26 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
         </div>
     </div>
 `	
+    getInputValue(myList, itemValue);
     getProject(contentSection, myProject);
     addListItem(contentSection, myList, mySavedList);
 };
+
+//set form values
+
+function getInputValue(myList, itemValue) {
+    console.log('get input value');
+    for (let i = myList.length-1; i >= 0; i--){
+        if (myList[i].item === itemValue) {
+            console.log(myList[i].item);
+            document.getElementById('project').value = myList[i].project;
+            document.getElementById('item').value = myList[i].item;
+            document.getElementById('dueDate').value = myList[i].dueDate;
+            document.getElementById('priority').value = myList[i].priority;
+            document.getElementById('notes').value = myList[i].notes;
+        }
+    }
+}
 
 const getProject = function(contentSection, myProject) {
     console.log("create dropdown menu");

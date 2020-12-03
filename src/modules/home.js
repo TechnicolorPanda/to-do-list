@@ -1,11 +1,12 @@
 import {removeItem} from './createNewItem.js';
 import {crossOffItem} from './createNewItem.js';
+import {loadCreateNewItem} from './createNewItem.js';
 
 //load home page elements
 
-const loadHome = function(contentSection, myList, mySavedList) {
+const loadHome = function(contentSection, myList, mySavedList, myProject) {
 	loadBackground();
-	loadTitle(contentSection, myList, mySavedList);
+	loadTitle(contentSection, myList, mySavedList, myProject);
 };
 
 //load page background image
@@ -25,7 +26,7 @@ const loadBackground = function() {
 
 //load page title
 
-const loadTitle = function(contentSection, myList, mySavedList) {
+const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
@@ -47,7 +48,7 @@ const loadTitle = function(contentSection, myList, mySavedList) {
 	}
 
 	if (myList.length>0) {
-		renderList(contentSection, myList, mySavedList);
+		renderList(contentSection, myList, mySavedList, myProject);
 	} else {
 		console.log('no list items');
 	};
@@ -55,7 +56,7 @@ const loadTitle = function(contentSection, myList, mySavedList) {
 
 //render to do list to the page
 
-function renderList(contentSection, myList, mySavedList) {
+function renderList(contentSection, myList, mySavedList, myProject) {
 
 	myList.forEach(element => 
 		render(element.item, element.dueDate, element.priority, element.completed, element.notes));
@@ -71,8 +72,10 @@ function renderList(contentSection, myList, mySavedList) {
 			cell.innerHTML = (arguments[j]);
 			row.appendChild(cell);
 
+			//make myProject array carry through to createNewItem page
+
 			row.addEventListener('dblclick', () => {
-				selectItem(row, myList, mySavedList, contentSection, arguments[0]);
+				selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
 			});
 		}
 
@@ -121,11 +124,12 @@ function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
 	})
 }
 
-function selectItem(row, myList, mySavedList, contentSection, itemValue) {
-	console.log('item selected');
-	console.log(itemValue);
-	document.getElementById('item').value = itemValue;
-	loadCreateNewItem(contentSection, myList, mySavedList);
+function selectItem(myList, mySavedList, contentSection, myProject, itemValue) {
+	for (let i = myList.length-1; i >= 0; i--){
+		if (myList[i].item === itemValue) {
+			loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue);
+		}
+	}
 }
 
 export {loadHome};

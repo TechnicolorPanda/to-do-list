@@ -16,15 +16,16 @@ function initiatePage() {
     const mySavedList = [];
     const myProject = [];
     const mySavedProject = [];
+    const itemValue = " ";
     testLocalStorage(myList, mySavedList, myProject, mySavedProject);
     loadHome(contentSection, myList, mySavedList);
-    loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject);
+    loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue);
     
 }
 
 //create empty MyList array in place of numberOfItems
 
-function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject) {
+function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue) {
     
     //load tabs
 
@@ -33,20 +34,22 @@ function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySaved
     sectionTabs.innerHTML =
         `<nav class = 'header'>
             <ul>
+                <li id = 'view'>View List</a></li>
                 <li id = 'new'>Create new item</a></li>
                 <li id = 'addProject'>Add New Project</a></li>
-                <li id = 'view'>View List</a></li>
+                <li id = 'clear'>Clear Completed Items</a></li>
             </ul>
         </nav>`
 
     const newTab = document.querySelector('#new');
     const newProject = document.querySelector('#addProject');
     const viewList = document.querySelector('#view');
+    const clearItems = document.querySelector('#clear');
 
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
-        loadCreateNewItem(contentSection, myList, mySavedList, myProject);
+        loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue);
     })
 
     newProject.addEventListener('click', () => {
@@ -55,6 +58,11 @@ function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySaved
 
     viewList.addEventListener('click', () => {
         loadHome(contentSection, myList, mySavedList, myProject);
+    })
+
+    clearItems.addEventListener('click', () => {
+        console.log('clear items');
+        //clearCompletedItems();
     })
 }
 
