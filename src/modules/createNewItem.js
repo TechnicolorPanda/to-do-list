@@ -5,8 +5,6 @@ import {loadHome} from './home.js';
 
 const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
-    console.log('load create new item');
-    
     contentSection.innerHTML = `		
     <div id = 'content'>
         <div id = 'form'>
@@ -34,7 +32,7 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
     addListItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
 };
 
-//set form values
+//set form values when editing an item
 
 function getInputValue(myList, mySavedList, itemValue) {
     console.log('get input value');
@@ -51,9 +49,10 @@ function getInputValue(myList, mySavedList, itemValue) {
     }
 }
 
+//create dropdown menu with listof projects
+
 const getProject = function(contentSection, myProject) {
-    console.log("create dropdown menu");
-    console.log(myProject);
+
     const addDropdownMenu = document.getElementById('project');
 
     for(let i = 0; i < myProject.length; i++){
@@ -65,7 +64,7 @@ const getProject = function(contentSection, myProject) {
     }
 };
 
-//create working submit button
+//create working submit button for create list item form
 
 const addListItem = function(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
@@ -101,8 +100,6 @@ class listItem {
 
 function createList(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
-    console.log("create list");
-    
     let item = document.getElementById('item').value;
     let dueDate = document.getElementById('dueDate').value;
     let priority = document.getElementById('priority').value;
@@ -113,14 +110,16 @@ function createList(contentSection, myList, mySavedList, myProject, itemValue, e
 
     myList.push(myListItem);
 
+    //delete old list item to prevent duplication when editing
+
     if (edit = true) {
         clearListItem(itemValue, myList, mySavedList);
     }
+
+    //save items to local storage
 	
 	myList.forEach(element => 
         mySavedList = element);
-
-    console.log(myList);
 
     placeInStorage(myList);
     loadHome(contentSection, myList, mySavedList, myProject);
@@ -153,23 +152,18 @@ function crossOffItem(row, myList, checkbox, mySavedList){
 //remove item from array when button selected
 
 function removeItem(button, myList, mySavedList, contentSection) {
-        for (let i = myList.length-1; i>=0; i--) {
-            if (myList[i].item === button.value)
-                myList.splice(i,1);
-        }
-
-        myList.forEach(element => 
-            mySavedList = element);
-    
-        placeInStorage(myList);
+        clearListItem(button.value, myList, mySavedList)
         loadHome(contentSection, myList);
 }
+
+//delete one item from list item array
 
 function clearListItem(itemValue, myList, mySavedList) {
     if (itemValue != ' ') {
         for (let i = myList.length-1; i>=0; i--) {
             if (myList[i].item === itemValue)
                 myList.splice(i,1);
+                break;
         }
 
         myList.forEach(element => 

@@ -6,8 +6,6 @@ import {loadCreateNewItem} from './createNewItem.js';
 
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
 	loadBackground();
-	console.log('load home');
-	console.log(myProject);
 	loadTitle(contentSection, myList, mySavedList, myProject);
 };
 
@@ -60,41 +58,50 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 
 function renderList(contentSection, myList, mySavedList, myProject) {
 
-	console.log('render list');
-	console.log(myProject);
+	for(let i = 0; i < myProject.length; i++) {
 
-	myList.forEach(element => 
-		render(element.item, element.dueDate, element.priority, element.completed, element.notes));
-
-	function render() {
 		const box = document.createElement('box');
 		const table = document.createElement('table');
+		let cell = document.createElement('th');
 		let row = table.insertRow(0);
-		createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
-		for(let j = 0; j < 3; j++){ 
-			let cell = document.createElement('td');
-			console.log(arguments[j]);
-			cell.innerHTML = (arguments[j]);
-			row.appendChild(cell);
+		console.log('Project = ' + myProject[i]);
+		cell.innerHTML = (myProject[i]);
+		row.appendChild(cell);
+		contentSection.appendChild(row);
 
-			//make myProject array carry through to createNewItem page
+			myList.forEach(element => 
+				render(element.item, element.dueDate, element.priority, element.completed, element.notes, element.project));
 
-			row.addEventListener('dblclick', () => {
-				console.log(myProject);
-				selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
-			});
+			function render() {
+
+				if (myProject[i] === arguments[5]) {
+
+					let row = table.insertRow(0);
+					createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
+					
+					for(let j = 0; j < 3; j++){ 
+						console.log(j + arguments[j]);
+						let cell = document.createElement('td');
+						cell.innerHTML = (arguments[j]);
+						row.appendChild(cell);
+
+						//make myProject array carry through to createNewItem page
+
+						row.addEventListener('dblclick', () => {
+							selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
+						});
+				}
+				
+			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
+			contentSection.appendChild(row);
+			}
 		}
-
-	addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
-	contentSection.appendChild(row);
-	}
+	}	
 }
 
 //create task completed checkbox on table
 
 function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, checkboxID) {
-
-	console.log("createCheckbox");
 
 	const checkbox = document.createElement('input');
 	checkbox.setAttribute('id','completed');
@@ -112,7 +119,6 @@ function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, c
 	}
 
 	checkbox.addEventListener('click', function() {
-		console.log('event selected');
 		crossOffItem(row, myList, checkbox, mySavedList);
 	}, false);
 

@@ -22,8 +22,6 @@ const loadCreateNewProject = function(contentSection, myProject, mySavedProject)
 
 function addProject(contentSection, myProject, mySavedProject){
 
-    console.log('add project');
-    
     const addCreateButton = document.querySelector('#button');
 
     addCreateButton.innerHTML =
@@ -72,9 +70,6 @@ function createHeading(contentSection) {
 
 function renderProject(contentSection, myProject, mySavedProject) {
 
-    console.log(myProject);
-    console.log('renderProject');
-
     myProject.forEach(element => 
         render(element));
         
@@ -110,8 +105,6 @@ function addRemoveButton(row, myProject, mySavedProject, contentSection, itemVal
 
 function removeItem(button, myProject, mySavedProject, contentSection) {
     for (let i = myProject.length-1; i>=0; i--) {
-        console.log("project value");
-        console.log(myProject[i]);
         if (myProject[i] === button.value)
             myProject.splice(i,1);
     }
