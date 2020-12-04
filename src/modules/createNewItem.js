@@ -151,19 +151,21 @@ function crossOffItem(row, myList, checkbox, mySavedList){
 
 //remove item from array when button selected
 
-function removeItem(button, myList, mySavedList, contentSection) {
+function removeItem(button, myList, mySavedList, contentSection, myProject) {
         clearListItem(button.value, myList, mySavedList)
-        loadHome(contentSection, myList);
+        loadHome(contentSection, myList, mySavedList, myProject);
 }
 
 //delete one item from list item array
 
 function clearListItem(itemValue, myList, mySavedList) {
     if (itemValue != ' ') {
-        for (let i = myList.length-1; i>=0; i--) {
-            if (myList[i].item === itemValue)
-                myList.splice(i,1);
+        console.log(myList.length);
+        for (let k = myList.length-1; k>=0; k--) {
+            if (myList[k].item === itemValue) {
+                myList.splice(k,1);
                 break;
+            }
         }
 
         myList.forEach(element => 

@@ -64,7 +64,6 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 		const table = document.createElement('table');
 		let cell = document.createElement('th');
 		let row = table.insertRow(0);
-		console.log('Project = ' + myProject[i]);
 		cell.innerHTML = (myProject[i]);
 		row.appendChild(cell);
 		contentSection.appendChild(row);
@@ -80,7 +79,6 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 					createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
 					
 					for(let j = 0; j < 3; j++){ 
-						console.log(j + arguments[j]);
 						let cell = document.createElement('td');
 						cell.innerHTML = (arguments[j]);
 						row.appendChild(cell);
@@ -92,7 +90,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 						});
 				}
 				
-			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0]);
+			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0], myProject);
 			contentSection.appendChild(row);
 			}
 		}
@@ -126,13 +124,13 @@ function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, c
 
 //add ability to delete items
 
-function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
+function addRemoveButton(row, myList, mySavedList, contentSection, itemValue, myProject) {
 	const button = document.createElement('button');
 	button.value =  itemValue;
 	button.id = 'trashButton';
 	row.appendChild(button);
 	button.addEventListener('click', () => {
-		removeItem(button, myList, mySavedList, contentSection);
+		removeItem(button, myList, mySavedList, contentSection, myProject);
 	})
 }
 
