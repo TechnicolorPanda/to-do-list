@@ -6,6 +6,8 @@ import {loadCreateNewItem} from './createNewItem.js';
 
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
 	loadBackground();
+	console.log('load home');
+	console.log(myProject);
 	loadTitle(contentSection, myList, mySavedList, myProject);
 };
 
@@ -58,6 +60,9 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 
 function renderList(contentSection, myList, mySavedList, myProject) {
 
+	console.log('render list');
+	console.log(myProject);
+
 	myList.forEach(element => 
 		render(element.item, element.dueDate, element.priority, element.completed, element.notes));
 
@@ -75,6 +80,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 			//make myProject array carry through to createNewItem page
 
 			row.addEventListener('dblclick', () => {
+				console.log(myProject);
 				selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
 			});
 		}
@@ -125,11 +131,8 @@ function addRemoveButton(row, myList, mySavedList, contentSection, itemValue) {
 }
 
 function selectItem(myList, mySavedList, contentSection, myProject, itemValue) {
-	for (let i = myList.length-1; i >= 0; i--){
-		if (myList[i].item === itemValue) {
-			loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue);
-		}
-	}
+	let edit = true; 
+	loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
 }
 
 export {loadHome};

@@ -18,7 +18,7 @@ function initiatePage() {
     const mySavedProject = [];
     const itemValue = " ";
     testLocalStorage(myList, mySavedList, myProject, mySavedProject);
-    loadHome(contentSection, myList, mySavedList);
+    loadHome(contentSection, myList, mySavedList, myProject);
     loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue);
     
 }
@@ -49,7 +49,8 @@ function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySaved
     //add event listeners for tabs
 
     newTab.addEventListener('click', () => {
-        loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue);
+        let edit = false;
+        loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
     })
 
     newProject.addEventListener('click', () => {

@@ -3,7 +3,7 @@ import {loadHome} from './home.js';
 
 //create input fields for list items
 
-const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject, itemValue) {
+const loadCreateNewItem = function(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
     console.log('load create new item');
     
@@ -29,15 +29,16 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
         </div>
     </div>
 `	
-    getInputValue(myList, itemValue);
+    getInputValue(myList, mySavedList, itemValue);
     getProject(contentSection, myProject);
-    addListItem(contentSection, myList, mySavedList);
+    addListItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
 };
 
 //set form values
 
-function getInputValue(myList, itemValue) {
+function getInputValue(myList, mySavedList, itemValue) {
     console.log('get input value');
+    console.log('item value ' + itemValue);
     for (let i = myList.length-1; i >= 0; i--){
         if (myList[i].item === itemValue) {
             console.log(myList[i].item);
@@ -52,6 +53,7 @@ function getInputValue(myList, itemValue) {
 
 const getProject = function(contentSection, myProject) {
     console.log("create dropdown menu");
+    console.log(myProject);
     const addDropdownMenu = document.getElementById('project');
 
     for(let i = 0; i < myProject.length; i++){
@@ -65,9 +67,7 @@ const getProject = function(contentSection, myProject) {
 
 //create working submit button
 
-const addListItem = function(contentSection, myList, mySavedList) {
-
-    //create submit button
+const addListItem = function(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
     const addSubmitButton = document.querySelector('#button');
 
@@ -79,10 +79,8 @@ const addListItem = function(contentSection, myList, mySavedList) {
         </nav>
         `
 
-    //add event listeners for submit button
-
     submit.addEventListener('click', () => {
-        createList(contentSection, myList, mySavedList);
+        createList(contentSection, myList, mySavedList, myProject, itemValue, edit);
     })
 }
 
@@ -101,7 +99,7 @@ class listItem {
 
 // push list items into a saved array
 
-function createList(contentSection, myList, mySavedList) {
+function createList(contentSection, myList, mySavedList, myProject, itemValue, edit) {
 
     console.log("create list");
     
@@ -114,6 +112,10 @@ function createList(contentSection, myList, mySavedList) {
     let myListItem = new listItem(item, dueDate, priority, notes, completed, project);
 
     myList.push(myListItem);
+
+    if (edit = true) {
+        clearListItem(itemValue, myList, mySavedList);
+    }
 	
 	myList.forEach(element => 
         mySavedList = element);
@@ -121,7 +123,7 @@ function createList(contentSection, myList, mySavedList) {
     console.log(myList);
 
     placeInStorage(myList);
-    loadHome(contentSection, myList);
+    loadHome(contentSection, myList, mySavedList, myProject);
 }
 
 //add to do list to local storage
@@ -161,6 +163,20 @@ function removeItem(button, myList, mySavedList, contentSection) {
     
         placeInStorage(myList);
         loadHome(contentSection, myList);
+}
+
+function clearListItem(itemValue, myList, mySavedList) {
+    if (itemValue != ' ') {
+        for (let i = myList.length-1; i>=0; i--) {
+            if (myList[i].item === itemValue)
+                myList.splice(i,1);
+        }
+
+        myList.forEach(element => 
+            mySavedList = element);
+    
+        placeInStorage(myList);
+    }
 }
 
 export {loadCreateNewItem};
