@@ -10,7 +10,9 @@ initiatePage();
 
 function initiatePage() {
 
-    //load home page
+    console.log('initiate page');
+
+    //set arrays and variables
 
     const contentSection = document.querySelector('#content');
     const myList = [];
@@ -18,6 +20,9 @@ function initiatePage() {
     const myProject = [];
     const mySavedProject = [];
     const itemValue = " ";
+
+    //display home page content
+
     testLocalStorage(myList, mySavedList, myProject, mySavedProject);
     loadHome(contentSection, myList, mySavedList, myProject);
     loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue);

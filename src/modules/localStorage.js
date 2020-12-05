@@ -42,8 +42,10 @@ const populateStorage = function(mySavedList, mySavedProject, myProject) {
 //retrieve local storage stored on device
 
 const retrieveStorage = function(myList, myProject) {
+    console.log('retrieve storage');
     const mySavedList = JSON.parse(localStorage.getItem('mySavedList'));
     const mySavedProject = JSON.parse(localStorage.getItem('mySavedProject'));
+    console.log('push items');
     mySavedList.forEach(element => 
             myList.push(element));
     mySavedProject.forEach(element =>

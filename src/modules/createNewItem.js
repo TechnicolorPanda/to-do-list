@@ -16,10 +16,10 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
             <label for='dueDate'>Due Date</label>
             <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' ' onfocus='this.value=" "'><br>
             <label for='priority'>Priority</label>
-            <select id = 'priority' name='priority' value = ' '>
-                <option value = 'high'>high</option>
-                <option value = 'medium'>medium</option>
-                <option value = 'low'>low</option>
+            <select id = 'priority' name='priority'>
+                <option value = 1>high</option>
+                <option value = 2>medium</option>
+                <option value = 3>low</option>
             </select><br>
             <label for='notes'>Notes</label><br>
             <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' ' onfocus='this.value=" "'></textarea><br>
@@ -49,7 +49,7 @@ function getInputValue(myList, mySavedList, itemValue) {
     }
 }
 
-//create dropdown menu with listof projects
+//create dropdown menu with list of projects
 
 const getProject = function(contentSection, myProject) {
 

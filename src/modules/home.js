@@ -5,6 +5,7 @@ import {loadCreateNewItem} from './createNewItem.js';
 //load home page elements
 
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
+	console.log('load home');
 	loadBackground();
 	loadTitle(contentSection, myList, mySavedList, myProject);
 	if (myList.length>0) {
@@ -36,21 +37,21 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
 
-	createHeading('Item', 'Due Date', 'Priority', contentSection);
+	// createHeading('Item', 'Due Date', 'Priority', contentSection);
 
-	function createHeading() {
-		const box = document.createElement('box');
-		const heading = document.createElement('table');
-		let row = heading.insertRow(0);
-			for(let i = 0; i < 3; i++){ 
-				let cell = document.createElement('th');
-				cell.innerHTML = (arguments[i]);
-				row.appendChild(cell);
-		   }
-		heading.appendChild(row);
-		box.appendChild(heading);
-		contentSection.appendChild(box);
-	}
+	// function createHeading() {
+	// 	const box = document.createElement('box');
+	// 	const heading = document.createElement('table');
+	// 	let row = heading.insertRow(0);
+	// 		for(let i = 0; i < 3; i++){ 
+	// 			let cell = document.createElement('th');
+	// 			cell.innerHTML = (arguments[i]);
+	// 			row.appendChild(cell);
+	// 	   }
+	// 	heading.appendChild(row);
+	// 	box.appendChild(heading);
+	// 	contentSection.appendChild(box);
+	// }
 }
 
 //render to do list to the page
@@ -67,27 +68,33 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 		row.appendChild(cell);
 		contentSection.appendChild(row);
 
-			myList.forEach(element => 
-				render(element.item, element.dueDate, element.priority, element.completed, element.notes, element.project));
+		//sort items by priority
 
-			function render() {
+		myList.sort(function(a, b){
+			return a.priority - b.priority;
+		});
 
-				if (myProject[i] === arguments[5]) {
+		myList.forEach(element => 
+			render(element.item, element.dueDate, element.priority, element.completed, element.notes, element.project));
 
-					let row = table.insertRow(0);
-					createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
-					
-					for(let j = 0; j < 3; j++){ 
-						let cell = document.createElement('td');
-						cell.innerHTML = (arguments[j]);
-						row.appendChild(cell);
+		function render() {
 
-						//make myProject array carry through to createNewItem page
+			if (myProject[i] === arguments[5]) {
 
-						row.addEventListener('dblclick', () => {
-							selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
-						});
-				}
+				let row = table.insertRow(0);
+				createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
+				
+				for(let j = 0; j < 3; j++){ 
+					let cell = document.createElement('td');
+					cell.innerHTML = (arguments[j]);
+					row.appendChild(cell);
+
+					//make myProject array carry through to createNewItem page
+
+					row.addEventListener('dblclick', () => {
+						selectItem(myList, mySavedList, contentSection, myProject, arguments[0]);
+					});
+			}
 				
 			addRemoveButton(row, myList, mySavedList, contentSection, arguments[0], myProject);
 			contentSection.appendChild(row);
