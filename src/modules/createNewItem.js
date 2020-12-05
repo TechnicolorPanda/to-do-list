@@ -175,6 +175,18 @@ function clearListItem(itemValue, myList, mySavedList) {
     }
 }
 
+const loadClearCompleted = function(contentSection, myList, mySavedList, myProject) {
+    console.log(myList);
+	for (let l = myList.length-1; l >= 0; l--) {
+        if (myList[l].completed === 'yes') {
+            console.log(myList[l].completed);
+            clearListItem(myList[l].item, myList, mySavedList);
+        }
+    }
+    loadHome(contentSection, myList, mySavedList, myProject);
+}
+
 export {loadCreateNewItem};
 export {removeItem};
 export {crossOffItem};
+export {loadClearCompleted};

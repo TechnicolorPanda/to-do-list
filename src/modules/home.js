@@ -7,6 +7,11 @@ import {loadCreateNewItem} from './createNewItem.js';
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
 	loadBackground();
 	loadTitle(contentSection, myList, mySavedList, myProject);
+	if (myList.length>0) {
+		renderList(contentSection, myList, mySavedList, myProject);
+	} else {
+		console.log('no list items');
+	};
 };
 
 //load page background image
@@ -46,12 +51,6 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 		box.appendChild(heading);
 		contentSection.appendChild(box);
 	}
-
-	if (myList.length>0) {
-		renderList(contentSection, myList, mySavedList, myProject);
-	} else {
-		console.log('no list items');
-	};
 }
 
 //render to do list to the page

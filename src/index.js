@@ -1,6 +1,7 @@
 //import page modules
 
 import {loadHome} from './modules/home.js';
+import {loadClearCompleted} from './modules/createNewItem.js';
 import {loadCreateNewItem} from './modules/createNewItem.js';
 import {testLocalStorage} from './modules/localStorage.js';
 import {loadCreateNewProject} from './modules/createNewProject.js';
@@ -62,8 +63,7 @@ function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySaved
     })
 
     clearItems.addEventListener('click', () => {
-        console.log('clear items');
-        //clearCompletedItems();
+        loadClearCompleted(contentSection, myList, mySavedList, myProject);
     })
 }
 
