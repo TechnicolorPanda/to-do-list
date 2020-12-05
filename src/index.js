@@ -10,8 +10,6 @@ initiatePage();
 
 function initiatePage() {
 
-    console.log('initiate page');
-
     //set arrays and variables
 
     const contentSection = document.querySelector('#content');

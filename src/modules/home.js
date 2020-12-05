@@ -5,13 +5,15 @@ import {loadCreateNewItem} from './createNewItem.js';
 //load home page elements
 
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
-	console.log('load home');
 	loadBackground();
 	loadTitle(contentSection, myList, mySavedList, myProject);
 	if (myList.length>0) {
 		renderList(contentSection, myList, mySavedList, myProject);
 	} else {
-		console.log('no list items');
+		contentSection.innerHTML = `
+			<h1 class='header'>Getting Stuff Done</h1>
+			<h2 class = 'instructions'>You have nothing to do! Create a new item/project or just take a nap.</h2>
+		`
 	};
 };
 
@@ -36,22 +38,6 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
-
-	// createHeading('Item', 'Due Date', 'Priority', contentSection);
-
-	// function createHeading() {
-	// 	const box = document.createElement('box');
-	// 	const heading = document.createElement('table');
-	// 	let row = heading.insertRow(0);
-	// 		for(let i = 0; i < 3; i++){ 
-	// 			let cell = document.createElement('th');
-	// 			cell.innerHTML = (arguments[i]);
-	// 			row.appendChild(cell);
-	// 	   }
-	// 	heading.appendChild(row);
-	// 	box.appendChild(heading);
-	// 	contentSection.appendChild(box);
-	// }
 }
 
 //render to do list to the page
@@ -59,7 +45,6 @@ const loadTitle = function(contentSection, myList, mySavedList, myProject) {
 function renderList(contentSection, myList, mySavedList, myProject) {
 
 	for(let i = 0; i < myProject.length; i++) {
-
 		const box = document.createElement('box');
 		const table = document.createElement('table');
 		let cell = document.createElement('th');
@@ -68,11 +53,13 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 		row.appendChild(cell);
 		contentSection.appendChild(row);
 
-		//sort items by priority
+			//sort items by priority
 
 		myList.sort(function(a, b){
 			return a.priority - b.priority;
 		});
+
+		//render list
 
 		myList.forEach(element => 
 			render(element.item, element.dueDate, element.priority, element.completed, element.notes, element.project));
@@ -84,7 +71,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 				let row = table.insertRow(0);
 				createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
 				
-				for(let j = 0; j < 3; j++){ 
+				for(let j = 0; j < 2; j++){ 
 					let cell = document.createElement('td');
 					cell.innerHTML = (arguments[j]);
 					row.appendChild(cell);

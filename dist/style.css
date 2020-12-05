@@ -24,16 +24,20 @@ img {
 
 h1 {
   font-size: 48px;
-  font-family: 'Quattrocento', serif;
-  color: rgb(7, 28, 61);
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(8, 50, 117);
   text-align: center;
-  text-shadow: 0 0 10px white, 0 0 20px whitesmoke;
-  border-style: none;
-  border-width: 0px;
-  border-color: #ccc;
+  border-width: 2px;
+  border-color: black;
   border-radius: 0%;
   margin-top: 24px;
   margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 24px;
+  text-align: center;
 }
 
 .header {
@@ -117,14 +121,14 @@ button {
   height: 30px;
   width: 60px;
   border-radius: 20%;
-  background-color: rgb(11, 75, 16);
-  -webkit-text-fill-color: white;
+  background-color: black;
+  -webkit-text-fill-color: yellow;
   margin-right: 50px;
   text-align: center;
 }
 
 tr:hover {
-  background-color: rgb(35, 104, 26);
+  background-color: rgba(255, 165, 0, 0.30);
   }
 
 li:hover {
@@ -135,30 +139,56 @@ th {
   width: 290px;
   background-color: white;
   padding: 5px;
+  font-size: large;
 }
 
 td {
   width: 290px;
   background-color: rgba(231, 201, 119, 0.00);
   padding: 5px;
+  font-size: medium;
 }
 
 #notes {
-  width: 80%;
+  width: 100%;
   padding: 1rem;
   margin-top: 1rem;
 }
 
 #priority {
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#project {
+  margin-bottom: 1rem;
+}
+
+#item {
+  margin-bottom: 1rem;
 }
 
 input {
   margin-top: 1rem;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+input[type=text] {
+  border: 2px solid grey;
+  background-color: lightgray;
+  border-radius: 4px;
+  width: 100%;
 }
 
 label {
   margin-top: 1rem;
+}
+
+#form {
+  font-size: large;
+  font-weight: bold;
 }
 
 

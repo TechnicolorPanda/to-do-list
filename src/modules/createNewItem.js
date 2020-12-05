@@ -12,9 +12,9 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
             <select id = 'project' name='project'>
             </select><br> 
             <label for='item'>Item</label>
-            <input type='text' id='item' class='text-input' name='item' maxlength='200' value=' ' onfocus='this.value=" "'><br>
+            <input type='text' id='item' class='text-input' name='item' maxlength='200' value=' '><br>
             <label for='dueDate'>Due Date</label>
-            <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' ' onfocus='this.value=" "'><br>
+            <input type='text' id='dueDate' class='text-input' name='dueDate' maxlength='100' value=' '><br>
             <label for='priority'>Priority</label>
             <select id = 'priority' name='priority'>
                 <option value = 1>high</option>
@@ -22,21 +22,19 @@ const loadCreateNewItem = function(contentSection, myList, mySavedList, myProjec
                 <option value = 3>low</option>
             </select><br>
             <label for='notes'>Notes</label><br>
-            <textarea type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' ' onfocus='this.value=" "'></textarea><br>
+            <input type='text' id='notes' class='text-input' name='notes' maxlength='20000' value = ' '></input><br>
             <div id='button'></div>
         </div>
     </div>
 `	
-    getInputValue(myList, mySavedList, itemValue);
-    getProject(contentSection, myProject);
+    getInputValue(myList, itemValue);
+    getProject(myProject);
     addListItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
 };
 
 //set form values when editing an item
 
-function getInputValue(myList, mySavedList, itemValue) {
-    console.log('get input value');
-    console.log('item value ' + itemValue);
+function getInputValue(myList, itemValue) {
     for (let i = myList.length-1; i >= 0; i--){
         if (myList[i].item === itemValue) {
             console.log(myList[i].item);
@@ -51,7 +49,7 @@ function getInputValue(myList, mySavedList, itemValue) {
 
 //create dropdown menu with list of projects
 
-const getProject = function(contentSection, myProject) {
+const getProject = function(myProject) {
 
     const addDropdownMenu = document.getElementById('project');
 
