@@ -1,12 +1,12 @@
-import {removeItem} from './createNewItem.js';
-import {crossOffItem} from './createNewItem.js';
+import {removeItem} from './arrayLogic.js';
+import {crossOffItem} from './arrayLogic.js';
 import {loadCreateNewItem} from './createNewItem.js';
 
 //load home page elements
 
 const loadHome = function(contentSection, myList, mySavedList, myProject) {
 	loadBackground();
-	loadTitle(contentSection, myList, mySavedList, myProject);
+	loadTitle(contentSection);
 	if (myList.length>0) {
 		renderList(contentSection, myList, mySavedList, myProject);
 	} else {
@@ -34,7 +34,7 @@ const loadBackground = function() {
 
 //load page title
 
-const loadTitle = function(contentSection, myList, mySavedList, myProject) {
+const loadTitle = function(contentSection) {
 	contentSection.innerHTML = `		
 		<h1 class='header'>Getting Stuff Done</h1>
 		`
@@ -53,7 +53,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 		row.appendChild(cell);
 		contentSection.appendChild(row);
 
-			//sort items by priority
+		//sort items by priority
 
 		myList.sort(function(a, b){
 			return a.priority - b.priority;
@@ -69,7 +69,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 			if (myProject[i] === arguments[5]) {
 
 				let row = table.insertRow(0);
-				createCheckbox(row, myList, mySavedList, contentSection, arguments[3], arguments[0]);
+				createCheckbox(row, myList, mySavedList, arguments[3], arguments[0]);
 				
 				for(let j = 0; j < 2; j++){ 
 					let cell = document.createElement('td');
@@ -92,7 +92,7 @@ function renderList(contentSection, myList, mySavedList, myProject) {
 
 //create task completed checkbox on table
 
-function createCheckbox(row, myList, mySavedList, contentSection, isCompleted, checkboxID) {
+function createCheckbox(row, myList, mySavedList, isCompleted, checkboxID) {
 
 	const checkbox = document.createElement('input');
 	checkbox.setAttribute('id','completed');

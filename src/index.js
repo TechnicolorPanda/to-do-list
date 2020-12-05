@@ -1,7 +1,7 @@
 //import page modules
 
 import {loadHome} from './modules/home.js';
-import {loadClearCompleted} from './modules/createNewItem.js';
+import {loadClearCompleted} from './modules/arrayLogic.js';
 import {loadCreateNewItem} from './modules/createNewItem.js';
 import {testLocalStorage} from './modules/localStorage.js';
 import {loadCreateNewProject} from './modules/createNewProject.js';
