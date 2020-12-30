@@ -1,9 +1,35 @@
 /* standard style reset */
-html, body, header, nav, h1, a,
-ul, li, strong, main, button, i,
-section, img, div, h2, h3, h4, h5, p, form,
-fieldset, label, input, textarea,
-span, article, footer, time, small, aside {
+html,
+body,
+header,
+nav,
+h1,
+a,
+ul,
+li,
+strong,
+main,
+button,
+i,
+section,
+img,
+div,
+h2,
+h3,
+h4,
+h5,
+p,
+form,
+fieldset,
+label,
+input,
+textarea,
+span,
+article,
+footer,
+time,
+small,
+aside {
   margin: 0;
   padding: 0;
   border: 0;
@@ -25,7 +51,7 @@ img {
 h1 {
   font-size: 48px;
   font-weight: bold;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   color: rgb(8, 50, 117);
   text-align: center;
   border-width: 2px;
@@ -56,9 +82,8 @@ nav ul {
   height: 2.5rem;
   list-style-type: none;
   font-size: 20px;
-  color:yellow;
+  color: yellow;
 }
-
 
 dt a {
   width: 80%;
@@ -86,27 +111,27 @@ dt b {
   width: 90%;
   text-align: left;
   font-size: 16px;
-  color:  black;
+  color: black;
   padding: 10px;
   position: relative;
   justify-content: space-evenly;
-  border:10px;
+  border: 10px;
   border-radius: 1%;
 }
 
 #tabs {
-  background-color:black;
+  background-color: black;
   width: 100%;
   text-align: left;
   padding: 10px;
   position: relative;
   justify-content: space-evenly;
-  border:10px;
-  border-color: rgb(51, 14, 2)
+  border: 10px;
+  border-color: rgb(51, 14, 2);
 }
 
 #trashButton {
-  background-image: url('images/trash.png');
+  background-image: url("images/trash.png");
   background-size: cover;
   height: 30px;
   width: 30px;
@@ -128,8 +153,8 @@ button {
 }
 
 tr:hover {
-  background-color: rgba(255, 165, 0, 0.30);
-  }
+  background-color: rgba(255, 165, 0, 0.3);
+}
 
 li:hover {
   background-color: rgb(48, 41, 4);
@@ -144,7 +169,7 @@ th {
 
 td {
   width: 290px;
-  background-color: rgba(231, 201, 119, 0.00);
+  background-color: rgba(231, 201, 119, 0);
   padding: 5px;
   font-size: medium;
 }
@@ -175,7 +200,7 @@ input {
   width: 100%;
 }
 
-input[type=text] {
+input[type="text"] {
   border: 2px solid grey;
   background-color: lightgray;
   border-radius: 4px;
@@ -190,5 +215,3 @@ label {
   font-size: large;
   font-weight: bold;
 }
-
-

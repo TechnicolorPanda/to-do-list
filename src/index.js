@@ -1,72 +1,88 @@
-//import page modules
+// import page modules
 
-import {loadHome} from './modules/home.js';
-import {loadClearCompleted} from './modules/arrayLogic.js';
-import {loadCreateNewItem} from './modules/createNewItem.js';
-import {testLocalStorage} from './modules/localStorage.js';
-import {loadCreateNewProject} from './modules/createNewProject.js';
+import { loadHome } from './modules/home';
+import { loadClearCompleted } from './modules/arrayLogic';
+import { loadCreateNewItem } from './modules/createNewItem';
+import { testLocalStorage } from './modules/localStorage';
+import { loadCreateNewProject } from './modules/createNewProject';
 
-initiatePage();
+(function initiatePage() {
+  // set arrays and variables
 
-function initiatePage() {
+  const contentSection = document.querySelector('#content');
+  const myList = [];
+  const mySavedList = [];
+  const myProject = [];
+  const mySavedProject = [];
+  const itemValue = ' ';
 
-    //set arrays and variables
+  // display home page content
 
-    const contentSection = document.querySelector('#content');
-    const myList = [];
-    const mySavedList = [];
-    const myProject = [];
-    const mySavedProject = [];
-    const itemValue = " ";
+  testLocalStorage(myList, mySavedList, myProject, mySavedProject);
+  loadHome(contentSection, myList, mySavedList, myProject);
+  // eslint-disable-next-line no-use-before-define
+  loadSectionTabs(
+    contentSection,
+    myList,
+    mySavedList,
+    myProject,
+    mySavedProject,
+    itemValue,
+  );
+}());
 
-    //display home page content
+// create empty MyList array in place of numberOfItems
 
-    testLocalStorage(myList, mySavedList, myProject, mySavedProject);
-    loadHome(contentSection, myList, mySavedList, myProject);
-    loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue);
-    
-}
+function loadSectionTabs(
+  contentSection,
+  myList,
+  mySavedList,
+  myProject,
+  mySavedProject,
+  itemValue,
+) {
+  // load tabs
 
-//create empty MyList array in place of numberOfItems
+  const sectionTabs = document.querySelector('#tabs');
 
-function loadSectionTabs(contentSection, myList, mySavedList, myProject, mySavedProject, itemValue) {
-    
-    //load tabs
-
-    const sectionTabs = document.querySelector('#tabs');
-
-    sectionTabs.innerHTML =
-        `<nav class = 'header'>
+  sectionTabs.innerHTML = `<nav class = 'header'>
             <ul>
                 <li id = 'view'>View List</a></li>
                 <li id = 'new'>Create new item</a></li>
                 <li id = 'addProject'>Add New Project</a></li>
                 <li id = 'clear'>Clear Completed Items</a></li>
             </ul>
-        </nav>`
+        </nav>`;
 
-    const newTab = document.querySelector('#new');
-    const newProject = document.querySelector('#addProject');
-    const viewList = document.querySelector('#view');
-    const clearItems = document.querySelector('#clear');
+  const newTab = document.querySelector('#new');
+  const newProject = document.querySelector('#addProject');
+  const viewList = document.querySelector('#view');
+  const clearItems = document.querySelector('#clear');
 
-    //add event listeners for tabs
+  // add event listeners for tabs
 
-    newTab.addEventListener('click', () => {
-        let edit = false;
-        loadCreateNewItem(contentSection, myList, mySavedList, myProject, itemValue, edit);
-    })
+  newTab.addEventListener('click', () => {
+    // eslint-disable-next-line prefer-const
+    let edit = false;
+    loadCreateNewItem(
+      contentSection,
+      myList,
+      mySavedList,
+      myProject,
+      itemValue,
+      edit,
+    );
+  });
 
-    newProject.addEventListener('click', () => {
-        loadCreateNewProject(contentSection, myProject, mySavedProject);
-    })
+  newProject.addEventListener('click', () => {
+    loadCreateNewProject(contentSection, myProject, mySavedProject);
+  });
 
-    viewList.addEventListener('click', () => {
-        loadHome(contentSection, myList, mySavedList, myProject);
-    })
+  viewList.addEventListener('click', () => {
+    loadHome(contentSection, myList, mySavedList, myProject);
+  });
 
-    clearItems.addEventListener('click', () => {
-        loadClearCompleted(contentSection, myList, mySavedList, myProject);
-    })
+  clearItems.addEventListener('click', () => {
+    loadClearCompleted(contentSection, myList, mySavedList, myProject);
+  });
 }
-
